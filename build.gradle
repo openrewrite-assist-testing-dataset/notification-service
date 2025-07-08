@@ -1,0 +1,55 @@
+allprojects {
+    repositories {
+        mavenCentral()
+        jcenter()
+    }
+}
+
+subprojects {
+    apply plugin: 'java'
+    apply plugin: 'application'
+
+    sourceCompatibility = '11'
+    targetCompatibility = '11'
+
+    dependencies {
+        implementation 'io.dropwizard:dropwizard-core:2.1.7'
+        implementation 'io.dropwizard:dropwizard-auth:2.1.7'
+        implementation 'io.dropwizard:dropwizard-jdbi3:2.1.7'
+        implementation 'io.dropwizard:dropwizard-client:2.1.7'
+        implementation 'org.postgresql:postgresql:42.5.4'
+        implementation 'com.google.guava:guava:21.0'
+        implementation 'com.fasterxml.jackson.core:jackson-core:2.12.7'
+        implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.7'
+        implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.7'
+        implementation 'org.apache.logging.log4j:log4j-core:2.19.0'
+        implementation 'org.apache.logging.log4j:log4j-api:2.19.0'
+        implementation 'org.apache.logging.log4j:log4j-slf4j-impl:2.19.0'
+        implementation 'javax.validation:validation-api:2.0.1.Final'
+        implementation 'org.hibernate.validator:hibernate-validator:6.2.5.Final'
+        implementation 'org.apache.commons:commons-lang3:3.12.0'
+        implementation 'javax.mail:javax.mail-api:1.6.2'
+        implementation 'com.sun.mail:javax.mail:1.6.2'
+        implementation 'org.apache.httpcomponents:httpclient:4.5.14'
+        implementation 'com.twilio.sdk:twilio:8.31.1'
+        implementation 'com.slack.api:slack-api-client:1.27.3'
+        implementation 'org.quartz-scheduler:quartz:2.3.2'
+        implementation 'redis.clients:jedis:4.3.1'
+
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
+        testImplementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+        testImplementation 'org.junit.jupiter:junit-jupiter-params:5.9.2'
+        testImplementation 'org.mockito:mockito-core:4.11.0'
+        testImplementation 'org.mockito:mockito-junit-jupiter:4.11.0'
+        testImplementation 'io.dropwizard:dropwizard-testing:2.1.7'
+        testImplementation 'com.h2database:h2:2.1.214'
+    }
+
+    test {
+        useJUnitPlatform()
+    }
+}
+
+wrapper {
+    gradleVersion = '7.6'
+}
