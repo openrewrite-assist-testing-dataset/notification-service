@@ -1,0 +1,9 @@
+dependencies {
+    implementation project(':common')
+    implementation 'org.quartz-scheduler:quartz:2.3.2'
+    implementation 'redis.clients:jedis:4.3.1'
+    implementation 'javax.mail:javax.mail-api:1.6.2'
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+}
+
+mainClassName = 'com.notification.processor.MessageProcessorMain'

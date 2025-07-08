@@ -1,0 +1,81 @@
+server:
+  type: simple
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 8080
+    bindHost: 0.0.0.0
+  adminConnectors:
+    - type: http
+      port: 8081
+      bindHost: 0.0.0.0
+
+database:
+  driverClass: org.postgresql.Driver
+  user: notification_user
+  password: notification_pass
+  url: jdbc:postgresql://localhost:5432/notification_db
+  properties:
+    charSet: UTF-8
+    hibernate.dialect: org.hibernate.dialect.PostgreSQLDialect
+  maxWaitForConnection: 1s
+  validationQuery: "SELECT 1"
+  validationQueryTimeout: 3s
+  minSize: 10
+  maxSize: 40
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1 minute
+
+redis:
+  host: localhost
+  port: 6379
+  password: null
+  timeout: 2000
+  maxConnections: 20
+  maxIdle: 10
+
+logging:
+  level: INFO
+  loggers:
+    com.notification: DEBUG
+    org.jdbi: DEBUG
+    redis.clients: DEBUG
+  appenders:
+    - type: console
+      threshold: INFO
+      timeZone: UTC
+      target: stdout
+      logFormat: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+    - type: file
+      threshold: DEBUG
+      timeZone: UTC
+      currentLogFilename: ./logs/notification-api.log
+      archivedLogFilenamePattern: ./logs/notification-api-%d{yyyy-MM-dd}-%i.log.gz
+      archivedFileCount: 30
+      maxFileSize: 10MB
+      logFormat: "%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"
+
+metrics:
+  frequency: 1 minute
+  reporters:
+    - type: log
+      logger: metrics
+      markerName: metrics
+
+jwtSecret: "notification-secret-key-2023"
+apiKeys:
+  - "notif-api-key-001"
+  - "notif-api-key-002"
+
+rateLimiting:
+  enabled: true
+  requestsPerMinute: 1000
+  requestsPerHour: 10000
+
+retryConfig:
+  maxRetries: 3
+  initialDelayMs: 1000
+  maxDelayMs: 30000
+  backoffMultiplier: 2.0

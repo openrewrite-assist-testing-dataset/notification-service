@@ -1,0 +1,5 @@
+rootProject.name = 'notification-service'
+include 'common'
+include 'notification-api'
+include 'message-processor'
+include 'delivery-engine'

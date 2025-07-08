@@ -1,0 +1,5 @@
+dependencies {
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.12.7'
+    implementation 'javax.validation:validation-api:2.0.1.Final'
+    implementation 'org.apache.commons:commons-lang3:3.12.0'
+}
