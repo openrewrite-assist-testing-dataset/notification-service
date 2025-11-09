@@ -9,18 +9,18 @@ import com.notification.api.auth.JwtAuthFilter;
 import com.notification.api.auth.ApiKeyAuthFilter;
 import com.notification.api.auth.NotificationPrincipal;
 import com.notification.api.db.NotificationDAO;
-import io.dropwizard.Application;
+import io.dropwizard.core.Application;
 import io.dropwizard.auth.AuthDynamicFeature;
 import io.dropwizard.auth.AuthValueFactoryProvider;
 import io.dropwizard.auth.chained.ChainedAuthFilter;
 import io.dropwizard.jdbi3.JdbiFactory;
-import io.dropwizard.setup.Bootstrap;
-import io.dropwizard.setup.Environment;
+import io.dropwizard.core.setup.Bootstrap;
+import io.dropwizard.core.setup.Environment;
 import org.jdbi.v3.core.Jdbi;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
 
-import javax.ws.rs.container.ContainerRequestFilter;
+import jakarta.ws.rs.container.ContainerRequestFilter;
 import java.util.List;
 
 public class NotificationApiApplication extends Application<NotificationApiConfiguration> {
